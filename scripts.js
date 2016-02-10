@@ -31,3 +31,24 @@ $('a[href*=#]:not([href=#])').click(function() {
         }
     }
 });
+
+
+// EMAIL VALIDATION
+// Validates input to make sure email is valid
+$.fn.validateEmail = function () {
+    return this.each(function () {
+        var $this = $(this);
+        $this.change(function () {
+            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            if ($this.val() == "") {
+                $this.removeClass("badEmail").removeClass("goodEmail")
+            }else if(reg.test($this.val()) == false) {
+                $this.removeClass("goodEmail");
+                $this.addClass("badEmail");
+            }else{
+                $this.removeClass("badEmail");
+                $this.addClass("goodEmail");
+            }
+        });
+    });
+};
